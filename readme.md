@@ -1,4 +1,17 @@
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+<p align="center">
+<span> create file .env </span>
+<br/>
+<span> create new DB and change details connnection to DB</span>
+<br/>
+<span>composer install Or composer update</span>
+<br/>
+<span>php artisan key:generate </span>
+<br/>
+<span>php artisan migrate</span>
+<br/>
+<span>php artisan serve</span>
+</p>
 
 <p align="center">
 <a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
