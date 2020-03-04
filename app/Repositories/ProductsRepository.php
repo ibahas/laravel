@@ -84,14 +84,15 @@ class ProductsRepository implements ProductsInterface
         } else {
             $imgfile = "NULL";
         }
-        $user_id = Auth::user()->id;
+        // $user_id = Auth::user()->id;
         $data = [
             'title' => $request->title,
             'body' => $request->body,
-            'user_id' => $user_id,
-            'img' => $imgfile,
+            'user_id' => 1,
+            // 'img' => $imgfile,
             'counter' => 0
         ];
+        // dd($data);
         products::create($data);
         return redirect('products/' . Auth::user()->id . '/user_id');
     }
@@ -171,5 +172,129 @@ class ProductsRepository implements ProductsInterface
         ];
         products::where('id', $id)->update($data);
         return redirect('products/' . Auth::user()->id . '/user_id');
+    }
+
+
+
+
+    //==============================================\\
+
+    /**
+     * function to show all products
+     *
+     * @return void
+     */
+    public function showProducts()
+    {
+        $products = products::all();
+        return response()->json($products);
+    }
+
+    /**
+     *  Function to show Product By Id
+     *
+     * @param [type] $id
+     * @return Response
+     */
+    public function showProductById($id)
+    {
+        $product = products::find($id);
+        return response()->json($product);
+    }
+
+
+    /**
+     * Show To User Id Now Logined
+     *
+     * @param [Id] $user_id
+     * @return void
+     */
+    public function showByUserId($user_id)
+    {
+        $products = products::all()->where('user_id', '=', $user_id);
+        if (Auth::user()->id == $user_id) {
+            return response()->json($products);
+        } else {
+            $var = array('status' => '404');
+            return response()->json($var);
+        }
+    }
+
+    /**
+     * Store Products
+     * return redirect a view
+     */
+    public function storeProducts(Request $request)
+    {
+        $data = [
+            'title' => $request->title,
+            'body' => $request->body,
+            'user_id' => Auth::user()->id,
+        ];
+        products::create($data);
+
+        $var = array('status' => '200');
+        return response()->json($var);
+    }
+
+
+    /**
+     * Update To Product where id = id and this aouther publisher this Product .
+     *
+     * @param Request $request
+     * @param [type] $id
+     * @return void
+     */
+    public function updateProductWithUserId(Request $request, $id)
+    {
+        $user_id = Auth::user()->id;
+        $findid = products::find($id);
+        if ($user_id != $findid->id) {
+            $data = [
+                'title' => $request->title,
+                'body' => $request->body,
+            ];
+            products::where('id', $id)->update($data);
+            return redirect('api/products/all');
+        } else {
+            $var = array('status' => '404');
+            return response()->json($var);
+        }
+    }
+    /**
+     * Show Product To Edit. ...
+     *
+     * @param [type] $id
+     * @return void
+     */
+    public function editProductWithUserId($id)
+    {
+        $user_id = Auth::user()->id;
+        $findid = products::find($id);
+        if ($user_id != $findid->id) {
+            $product = products::find($id);
+            return response()->json($product);
+        } else {
+            $var = array('status' => '404');
+            return response()->json($var);
+        }
+    }
+    /**
+     * function to destroy a product with id
+     * @param Id $id
+     * @return Response
+     */
+    public function destroyProduct($id)
+    {
+        $userId = products::find($id);
+        if (Auth::user()->id == $userId->user_id) {
+            $product = products::find($id);
+            $product = $product->delete();
+            $var = array('status' => '200');
+            return response()->json($var);
+        } else {
+            $var = array('status' => '404');
+            return response()->json($var);
+        }
     }
 }

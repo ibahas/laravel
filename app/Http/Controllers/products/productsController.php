@@ -5,6 +5,7 @@ namespace App\Http\Controllers\products;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\models\products;
 use App\Repositories\ProductsInterface;
 
 class productsController extends Controller
@@ -111,5 +112,79 @@ class productsController extends Controller
         //
         $data = $this->products->deleteProduct($id);
         return $data;
+    }
+
+
+    /**
+     * All Products JSON
+     *
+     * @return Response
+     */
+    public function showAllProducts()
+    {
+        return $this->products->showProducts();
+    }
+
+
+    /**
+     * Undocumented function
+     *
+     * @param [type] $id
+     * @return Response
+     */
+    public function showProductById($id)
+    {
+        return $this->products->showProductById($id);
+    }
+
+    /**
+     * Show Products for User ID :)
+     * return Respose
+     */
+
+    public function showUserIdProducts($user_id)
+    {
+        return $this->products->showByUserId($user_id);
+    }
+
+    /**
+     * Store Products
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function storeProduct(Request $request)
+    {
+        return $this->products->storeProducts($request);
+    }
+
+    /**
+     * function to Update data
+     */
+
+    public function updateProduct(Request $request, $id)
+    {
+        return $this->products->updateProductWithUserId($request, $id);
+    }
+
+    /**
+     * Function to Edit and show and check this user how is publish this product or no.
+     * @param $id
+     * @return Response
+     */
+
+    public function editProductWithId($id)
+    {
+        return $this->products->editProductWithUserId($id);
+    }
+
+    /**
+     * function to destroy a product with id
+     * @param Id $id
+     * @return Response
+     */
+    public function destroyProduct($id)
+    {
+        return $this->products->destroyProduct($id);
     }
 }
