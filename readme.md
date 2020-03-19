@@ -5,6 +5,8 @@
 <span> create new DB and change details connnection to DB</span>
 <br/>
 <span>composer install Or composer update</span>
+       <br/>
+    <span>composer require laravel/passport</span>
 <br/>
 <span>php artisan key:generate </span>
 <br/>
