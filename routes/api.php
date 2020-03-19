@@ -13,13 +13,18 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+
+Route::group(['prefix' => 'user', 'middleware' => 'auth:api', 'namespace' => 'user'], function () {
+    Route::get('/show', 'UsersController@show');
 });
 
 
 
-Route::group(['prefix'=>'auth','namespace'=>'Api\Auth'], function () {
+Route::group(['prefix' => 'auth', 'namespace' => 'Api\Auth'], function () {
     Route::post('register', 'RegisterController@register');
 });
 
@@ -27,11 +32,13 @@ Route::group(['prefix'=>'auth','namespace'=>'Api\Auth'], function () {
 Route::group(['prefix' => 'posts', 'middleware' => 'auth:api'], function () {
     Route::resource('/', 'PostController');
     Route::get('/getPostShow/{id?}', 'PostController@getPostShow');
+    Route::get('/posts/{user_id}', 'PostController@getPostsforUserId');
+    Route::get('/post/{id}', 'PostController@getPostforUserId');
 });
 
 
 
-Route::group(['prefix' => 'products', 'namespace' => 'products','middleware'=>'auth:api'], function () {
+Route::group(['prefix' => 'products', 'namespace' => 'products', 'middleware' => 'auth:api'], function () {
     Route::resource('', 'ProductsController');
     Route::get('/all', 'ProductsController@showAllProducts');
     Route::get('/{id}/show', 'ProductsController@showProductById');

@@ -16,4 +16,17 @@ interface PostsInterface
      */
 
     public function getPost($id = null);
+
+    /**
+     * $user_id User Auth now
+     */
+
+    public function getPostsByUserId($user_id);
+    /**
+     * Undocumented function
+     *
+     * @param [int] $id
+     * @return response mixed or array
+     */
+    public function getPostForUserInAuth($id);
 }

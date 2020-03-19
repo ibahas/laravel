@@ -102,4 +102,13 @@ class PostController extends Controller
     {
         //
     }
+
+    public function getPostsforUserId($user_id)
+    {
+        return $this->posts->getPostsByUserId($user_id);
+    }
+    public function getPostForUserId($id)
+    {
+        return $this->posts->getPostForUserInAuth($id);
+    }
 }
