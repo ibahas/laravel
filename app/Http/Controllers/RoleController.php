@@ -2,39 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\models\post;
-use App\Repositories\PostsInterface;
+use App\models\role;
 use Illuminate\Http\Request;
 
-class PostController extends Controller
+class RoleController extends Controller
 {
-    protected $posts;
-    public function __construct(PostsInterface $posts)
-    {
-        $this->posts = $posts;
-    }
-
-    /**
-     * Undocumented function
-     *
-     * @param [type] $id
-     * @return void
-     */
-    public function getPostShow($id = null)
-    {
-        $posts = $this->posts->getPost($id);
-        return $posts;
-    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
     public function index()
     {
-        $posts = $this->posts->getPosts();
-        return $posts;
+        //
     }
 
     /**
@@ -61,10 +41,10 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\models\post  $post
+     * @param  \App\models\role  $role
      * @return \Illuminate\Http\Response
      */
-    public function show(post $post)
+    public function show(role $role)
     {
         //
     }
@@ -72,10 +52,10 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\models\post  $post
+     * @param  \App\models\role  $role
      * @return \Illuminate\Http\Response
      */
-    public function edit(post $post)
+    public function edit(role $role)
     {
         //
     }
@@ -84,10 +64,10 @@ class PostController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\models\post  $post
+     * @param  \App\models\role  $role
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, post $post)
+    public function update(Request $request, role $role)
     {
         //
     }
@@ -95,10 +75,10 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\models\post  $post
+     * @param  \App\models\role  $role
      * @return \Illuminate\Http\Response
      */
-    public function destroy(post $post)
+    public function destroy(role $role)
     {
         //
     }

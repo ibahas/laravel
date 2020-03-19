@@ -23,6 +23,14 @@ Route::group(['prefix'=>'auth','namespace'=>'Api\Auth'], function () {
     Route::post('register', 'RegisterController@register');
 });
 
+
+Route::group(['prefix' => 'posts', 'middleware' => 'auth:api'], function () {
+    Route::resource('/', 'PostController');
+    Route::get('/getPostShow/{id?}', 'PostController@getPostShow');
+});
+
+
+
 Route::group(['prefix' => 'products', 'namespace' => 'products','middleware'=>'auth:api'], function () {
     Route::resource('', 'ProductsController');
     Route::get('/all', 'ProductsController@showAllProducts');

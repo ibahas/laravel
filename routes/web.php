@@ -11,15 +11,11 @@
 |
 */
 
-
-
 Route::get('/', 'HomeController@index');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-
 
 
 Route::group(['prefix' => 'posts', 'middleware' => 'auth'], function () {
@@ -37,4 +33,8 @@ Route::group(['prefix' => 'products', 'middleware' => 'auth', 'namespace' => 'pr
     Route::post('/products/{id}/destroy', 'ProductsController@destroy');
     Route::get('/{id}/edit', 'ProductsController@edit');
     Route::any('/{id}/update', 'ProductsController@update');
+});
+
+Route::group(['prefix' => 'users', 'middleware' => 'admin', 'namespace' => 'user'], function () {
+    Route::get('/show', 'UsersController@show');
 });
