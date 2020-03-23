@@ -103,12 +103,76 @@ class PostController extends Controller
         //
     }
 
+
+    /**
+     * Get Posts With user_id add a posts
+     */
+
     public function getPostsforUserId($user_id)
     {
         return $this->posts->getPostsByUserId($user_id);
     }
+
+    /**
+     * Undocumented function
+     *
+     * @param [type] $id
+     * @return void
+     */
     public function getPostForUserId($id)
     {
         return $this->posts->getPostForUserInAuth($id);
+    }
+
+    /**
+     * get With =>> Query Builder
+     */
+
+    public function getQueryBuilder()
+    {
+        return $this->posts->getQueryBuilder();
+    }
+
+    /**
+     * Get All Posts has been Deleted_at have a value;
+     *
+     * @return void
+     */
+    public function getOnlyTrashed()
+    {
+       return $this->posts->getOnlyTrashed();
+    }
+
+
+    /**
+     * Force Deleted
+     *
+     * @param [type] $id
+     * @return void
+     */
+    public function getForceDeletePosts($id)
+    {
+        return $this->posts->getForceDeletePosts($id);
+    }
+    /**
+     * Restore Psot
+     *
+     * @param [type] $id
+     * @return void
+     */
+    public function restorePost($id)
+    {
+        return $this->posts->restorePost($id);
+    }
+
+    /**
+     * Sof Delete
+     *
+     * @param [type] $id
+     * @return void
+     */
+    public function softDeletePost($id)
+    {
+        return $this->posts->softDeletePost($id);
     }
 }

@@ -34,6 +34,31 @@ Route::group(['prefix' => 'posts', 'middleware' => 'auth:api'], function () {
     Route::get('/getPostShow/{id?}', 'PostController@getPostShow');
     Route::get('/posts/{user_id}', 'PostController@getPostsforUserId');
     Route::get('/post/{id}', 'PostController@getPostforUserId');
+
+    /**
+     * Using withTrashed();
+     */
+    Route::get('/all/query', 'PostController@getQueryBuilder');
+
+    /**
+     * Get All Data has been trashed ...
+     */
+    Route::get('/all/trashed', 'PostController@getOnlyTrashed');
+    /**
+     * Force Deleted
+     */
+    Route::delete('/forceDelete/{id}', 'PostController@getForceDeletePosts');
+
+    /**
+     * Restore Post
+     *
+     */
+    Route::post('/restore/{id}', 'PostController@restorePost');
+
+    /**
+     * Sof Delete
+     */
+    Route::post('/softDelete/{id}', 'PostController@softDeletePost');
 });
 
 

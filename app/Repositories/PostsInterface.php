@@ -29,4 +29,41 @@ interface PostsInterface
      * @return response mixed or array
      */
     public function getPostForUserInAuth($id);
+
+    /**
+     * Undocumented function
+     *
+     * @return withTrashed()
+     */
+    public function getQueryBuilder();
+
+    /**
+     * Undocumented function
+     *
+     * @return withTrashed()
+     */
+    public function getOnlyTrashed();
+
+    /**
+     * force Delete
+     *
+     * @param [type] $id
+     * @return void
+     */
+    public function getForceDeletePosts($id);
+
+    /**
+     * Resotre A post
+     *
+     * @param [type] $id
+     * @return void
+     */
+    public function restorePost($id);
+
+        /**
+     * Function to soft Delete
+     * @param [type] $id
+     */
+
+    public function softDeletePost($id);
 }
