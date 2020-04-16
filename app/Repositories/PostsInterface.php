@@ -66,4 +66,34 @@ interface PostsInterface
      */
 
     public function softDeletePost($id);
+
+    /**
+     * Show Min Counter views
+     *
+     * @return void
+     */
+    public function min();
+
+        /**
+     * Show average Counter views
+     *
+     * @return void
+     */
+    public function averagePosts();
+
+        /**
+     * Show count  views
+     *
+     * @return void
+     */
+    public function countPosts();
+
+
+    /**
+     * Using Take and Skip to posts
+     *
+     * @param Type $var
+     * @return void
+     */
+    public function takeSkipPosts();
 }

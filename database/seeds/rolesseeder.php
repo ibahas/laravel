@@ -25,7 +25,7 @@ class rolesseeder  extends Seeder
 
 
         factory(\App\User::class,10)->create();
-        factory(\App\models\post::class, 10)->create();
+        factory(\App\models\post::class, 110)->create();
         factory(\App\models\products::class, 10)->create();
 
     }

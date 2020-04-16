@@ -140,7 +140,7 @@ class PostController extends Controller
      */
     public function getOnlyTrashed()
     {
-       return $this->posts->getOnlyTrashed();
+        return $this->posts->getOnlyTrashed();
     }
 
 
@@ -174,5 +174,50 @@ class PostController extends Controller
     public function softDeletePost($id)
     {
         return $this->posts->softDeletePost($id);
+    }
+
+
+
+    /**
+     * Show Min Counter views
+     *
+     * @return void
+     */
+    public function min()
+    {
+        return $this->posts->min();
+    }
+
+    /**
+     * Show average Counter views
+     *
+     * @return void
+     */
+    public function averagePosts()
+    {
+        return $this->posts->averagePosts();
+    }
+
+        /**
+     * Show count  views
+     *
+     * @return void
+     */
+    public function countPosts()
+    {
+        return $this->posts->countPosts();
+    }
+
+
+    /**
+     * Using Take and Skip to posts
+     *
+     * @param Type $var
+     * @return void
+     */
+    public function takeSkipPosts()
+    {
+        return $this->posts->takeSkipPosts();
+
     }
 }

@@ -59,6 +59,28 @@ Route::group(['prefix' => 'posts', 'middleware' => 'auth:api'], function () {
      * Sof Delete
      */
     Route::post('/softDelete/{id}', 'PostController@softDeletePost');
+
+
+    /**
+     * count()
+     */
+    Route::get('/count', 'PostController@countPosts');
+
+    /**
+     * Min()
+     */
+    Route::get('/min', 'PostController@min');
+
+
+    /**
+     * average()
+     */
+    Route::get('/average', 'PostController@averagePosts');
+
+    /**
+     * take() and function Skip()
+     */
+    Route::get('/withTakeSkip', 'PostController@takeSkipPosts');
 });
 
 

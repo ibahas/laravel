@@ -106,12 +106,11 @@ class PostsRepository implements PostsInterface
 
 
         $findOfPost = post::find($id);
-        if(Auth::user()->role_id == 1 || Auth::user()->id == $findOfPost->user_id)
-        {
+        if (Auth::user()->role_id == 1 || Auth::user()->id == $findOfPost->user_id) {
             $post = post::withTrashed()->find($id);
             $post->forceDelete();
             return response()->json('Success deleted');
-        }else{
+        } else {
             return response()->json('This Post You Can\'t be Change it');
         }
     }
@@ -125,13 +124,12 @@ class PostsRepository implements PostsInterface
     public function restorePost($id)
     {
         $findOfPost = post::find($id);
-        if(Auth::user()->role_id == 1 || Auth::user()->id == $findOfPost->user_id)
-        {
+        if (Auth::user()->role_id == 1 || Auth::user()->id == $findOfPost->user_id) {
             post::withTrashed()
-            ->where('id', $id)
-            ->restore();
-        return response()->json('This Post has been Restore');
-        }else{
+                ->where('id', $id)
+                ->restore();
+            return response()->json('This Post has been Restore');
+        } else {
             return response()->json('This Post You Can\'t be Change it');
         }
     }
@@ -144,15 +142,58 @@ class PostsRepository implements PostsInterface
     public function softDeletePost($id)
     {
         $findOfPost = post::find($id);
-        if(Auth::user()->role_id == 1 || Auth::user()->id == $findOfPost->user_id)
-        {
+        if (Auth::user()->role_id == 1 || Auth::user()->id == $findOfPost->user_id) {
             $post = post::find($id);
             $post->delete();
 
             return response()->json('This Post has been Deleted');
-        }else{
+        } else {
             return response()->json('This Post You Can\'t be Change it');
         }
+    }
 
+    /**
+     * Show Min Counter views
+     *
+     * @return void
+     */
+    public function min()
+    {
+        $post = post::min('views');
+        return response()->json($post);
+    }
+
+    /**
+     * Show average Counter views
+     *
+     * @return void
+     */
+    public function averagePosts()
+    {
+        $post = post::average('views');
+        return response()->json($post);
+    }
+
+    /**
+     * Show count  views
+     *
+     * @return void
+     */
+    public function countPosts()
+    {
+        $post = post::count('user_id');
+        return response()->json($post);
+    }
+
+    /**
+     * Using Take and Skip to posts
+     *
+     * @param Type $var
+     * @return void
+     */
+    public function takeSkipPosts()
+    {
+        $posts = DB::table('posts')->skip(10)->take(100)->get();
+        return response()->json($posts);
     }
 }
